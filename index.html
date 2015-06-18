@@ -2118,7 +2118,8 @@ Only one of these three fields is required for the microtransaction endpoint: <b
 </tr>
 </tbody></table>
 
-<h2 id="wallet">Wallet<pre class="highlight shell"><code>curl -d <span class="s1">'{"name": "alice","addresses": ["1JcX75oraJEmzXXHpDjRctw3BX6qDmFM8e"]}'</span> https://api.blockcypher.com/v1/btc/main/wallets?token<span class="o">=</span>YOURTOKEN
+<h2 id="wallet">Wallet</h2>
+<pre class="highlight shell"><code>curl -d <span class="s1">'{"name": "alice","addresses": ["1JcX75oraJEmzXXHpDjRctw3BX6qDmFM8e"]}'</span> https://api.blockcypher.com/v1/btc/main/wallets?token<span class="o">=</span>YOURTOKEN
 
 <span class="o">{</span>
 <span class="s2">"token"</span>:<span class="s2">"YOURTOKEN"</span>,
@@ -2192,7 +2193,7 @@ Only one of these three fields is required for the microtransaction endpoint: <b
 </tr>
 </tbody></table>
 
-Event</h2>
+<h2 id="event">Event</h2>
 <pre class="highlight shell"><code>curl https://api.blockcypher.com/v1/btc/main/hooks/399d0923-e920-48ee-8928-2051cbfbc369
 
 <span class="o">{</span>
@@ -3581,7 +3582,7 @@ Always use HTTPS for Address Generation requests. Otherwise, your generated priv
 
 <p>The returned object contains a private key in hex-encoded and wif-encoded format, a public key, and a public address.</p>
 
-Generate Multisig Address Endpoint</h2>
+<h2 id="generate-multisig-address-endpoint">Generate Multisig Address Endpoint</h2>
 <pre class="highlight shell"><code>curl -d <span class="s1">'{"pubkeys": ["02c716d071a76cbf0d29c29cacfec76e0ef8116b37389fb7a3e76d6d32cf59f4d3", "033ef4d5165637d99b673bcdbb7ead359cee6afd7aaf78d3da9d2392ee4102c8ea", "022b8934cc41e76cb4286b9f3ed57e2d27798395b04dd23711981a77dc216df8ca"], "script_type": "multisig-2-of-3"}'</span> https://api.blockcypher.com/v1/btc/main/addrs
 
 <span class="o">{</span>
@@ -3811,7 +3812,7 @@ If the named wallet already exists under your token, attempting to create a new 
 
 <p><br /></p>
 
-Add Addresses to Wallet Endpoint</h3>
+<h3 id="add-addresses-to-wallet-endpoint">Add Addresses to Wallet Endpoint</h3>
 <pre class="highlight shell"><code>curl -d <span class="s1">'{"addresses": ["13cj1QtfW61kQHoqXm3khVRYPJrgQiRM6j"]}'</span> https://api.blockcypher.com/v1/btc/main/wallets/alice/addresses?token<span class="o">=</span>YOURTOKEN
 
 <span class="o">{</span><span class="s2">"token"</span>: <span class="s2">"YOURTOKEN"</span>,
@@ -5109,7 +5110,7 @@ One of the most common errors we see are users who use uncompressed public keys 
 <li><em>unknown</em> (non-standard script)</li>
 </ol>
 
-Push Raw Transaction Endpoint</h2>
+<h2 id="push-raw-transaction-endpoint">Push Raw Transaction Endpoint</h2>
 <pre class="highlight shell"><code>curl -d <span class="s1">'{"tx":"01000000011935b41d12936df99d322ac8972b74ecff7b79408bbccaf1b2eb8015228beac8000000006b483045022100921fc36b911094280f07d8504a80fbab9b823a25f102e2bc69b14bcd369dfc7902200d07067d47f040e724b556e5bc3061af132d5a47bd96e901429d53c41e0f8cca012102152e2bb5b273561ece7bbe8b1df51a4c44f5ab0bc940c105045e2cc77e618044ffffffff0240420f00000000001976a9145fb1af31edd2aa5a2bbaa24f6043d6ec31f7e63288ac20da3c00000000001976a914efec6de6c253e657a9d5506a78ee48d89762fb3188ac00000000"}'</span> https://api.blockcypher.com/v1/bcy/test/txs/push
 
 <span class="o">{</span>
@@ -5305,7 +5306,7 @@ Push Raw Transaction Endpoint</h2>
 
 <p>If it succeeds, you&rsquo;ll receive a decoded <a href="#tx">TX</a> object and an HTTP Status Code 201. If you&rsquo;d like, you can use the decoded transaction <strong>hash</strong> alongside an <a href="#events-and-hooks">Event</a> to track its progress in the network.</p>
 
-Decode Raw Transaction Endpoint</h2>
+<h2 id="decode-raw-transaction-endpoint">Decode Raw Transaction Endpoint</h2>
 <pre class="highlight shell"><code>curl -d <span class="s1">'{"tx":"01000000011935b41d12936df99d322ac8972b74ecff7b79408bbccaf1b2eb8015228beac8000000006b483045022100921fc36b911094280f07d8504a80fbab9b823a25f102e2bc69b14bcd369dfc7902200d07067d47f040e724b556e5bc3061af132d5a47bd96e901429d53c41e0f8cca012102152e2bb5b273561ece7bbe8b1df51a4c44f5ab0bc940c105045e2cc77e618044ffffffff0240420f00000000001976a9145fb1af31edd2aa5a2bbaa24f6043d6ec31f7e63288ac20da3c00000000001976a914efec6de6c253e657a9d5506a78ee48d89762fb3188ac00000000"}'</span> https://api.blockcypher.com/v1/bcy/test/txs/decode
 
 <span class="o">{</span>
@@ -5483,7 +5484,8 @@ Decode Raw Transaction Endpoint</h2>
 
 <p>If it succeeds, you&rsquo;ll receive your decoded <a href="#tx">TX</a> object.</p>
 
-Multisig Transactions<pre class="highlight shell"><code><span class="o">{</span>
+<h2 id="multisig-transactions">Multisig Transactions</h2>
+<pre class="highlight shell"><code><span class="o">{</span>
     <span class="s2">"inputs"</span>: <span class="o">[{</span><span class="s2">"addresses"</span>: <span class="o">[</span>sourceAddr]<span class="o">}]</span>,
     <span class="s2">"outputs"</span>: <span class="o">[{</span>
         <span class="s2">"addresses"</span>   : <span class="o">[</span>pubkey1, pubkey2, pubkey3],
@@ -6293,7 +6295,8 @@ Testing WebHooks can be tricky; we recommend using <a href="http://requestb.in/"
 </tr>
 </tbody></table>
 
-WebHook ID Endpoint<pre class="highlight shell"><code>curl https://api.blockcypher.com/v1/btc/main/hooks/399d0923-e920-48ee-8928-2051cbfbc369
+<h3 id="webhook-id-endpoint">WebHook ID Endpoint</h3>
+<pre class="highlight shell"><code>curl https://api.blockcypher.com/v1/btc/main/hooks/399d0923-e920-48ee-8928-2051cbfbc369
 
 <span class="o">{</span>
 <span class="s2">"id"</span>: <span class="s2">"399d0923-e920-48ee-8928-2051cbfbc369"</span>
