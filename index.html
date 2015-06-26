@@ -4633,42 +4633,28 @@ Always use HTTPS for creating and pushing transactions.
     <span class="s2">"vin_sz"</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span>
     <span class="s2">"vout_sz"</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span>
     <span class="s2">"confirmations"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"inputs"</span><span class="o">:</span><span class="p">[</span>
-      <span class="p">{</span>
-        <span class="s2">"prev_hash"</span><span class="o">:</span><span class="s2">"64e39fa5322ee604ad548dc5d4ae1a61b0a575278724d0df7e53dd334f5f13e3"</span><span class="p">,</span>
+    <span class="s2">"inputs"</span><span class="o">:</span><span class="p">[{</span> <span class="s2">"prev_hash"</span><span class="o">:</span><span class="s2">"64e39fa5322ee604ad548dc5d4ae1a61b0a575278724d0df7e53dd334f5f13e3"</span><span class="p">,</span>
         <span class="s2">"output_index"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
         <span class="s2">"script"</span><span class="o">:</span><span class="s2">""</span><span class="p">,</span>
         <span class="s2">"output_value"</span><span class="o">:</span><span class="mi">5432100</span><span class="p">,</span>
         <span class="s2">"sequence"</span><span class="o">:</span><span class="mi">4294967295</span><span class="p">,</span>
-        <span class="s2">"addresses"</span><span class="o">:</span><span class="p">[</span>
-          <span class="s2">"C5vqMGme4FThKnCY44gx1PLgWr86uxRbDm"</span>
-        <span class="p">],</span>
+        <span class="s2">"addresses"</span><span class="o">:</span><span class="p">[</span><span class="s2">"C5vqMGme4FThKnCY44gx1PLgWr86uxRbDm"</span><span class="p">],</span>
         <span class="s2">"script_type"</span><span class="o">:</span><span class="s2">""</span><span class="p">,</span>
         <span class="s2">"age"</span><span class="o">:</span><span class="mi">0</span>
       <span class="p">}</span>
     <span class="p">],</span>
-    <span class="s2">"outputs"</span><span class="o">:</span><span class="p">[</span>
-      <span class="p">{</span>
-        <span class="s2">"value"</span><span class="o">:</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="s2">"outputs"</span><span class="o">:</span><span class="p">[{</span> <span class="s2">"value"</span><span class="o">:</span><span class="mi">1000</span><span class="p">,</span>
         <span class="s2">"script"</span><span class="o">:</span><span class="s2">"76a9147b2b09ad46d95e177df6969a275db321c66cecf388ac"</span><span class="p">,</span>
-        <span class="s2">"addresses"</span><span class="o">:</span><span class="p">[</span>
-          <span class="s2">"C4MYFr4EAdqEeUKxTnPUF3d3whWcPMz1Fi"</span>
-        <span class="p">],</span>
+        <span class="s2">"addresses"</span><span class="o">:</span><span class="p">[</span><span class="s2">"C4MYFr4EAdqEeUKxTnPUF3d3whWcPMz1Fi"</span><span class="p">],</span>
         <span class="s2">"script_type"</span><span class="o">:</span><span class="s2">"pay-to-pubkey-hash"</span>
       <span class="p">},</span>
-      <span class="p">{</span>
-        <span class="s2">"value"</span><span class="o">:</span><span class="mi">5419100</span><span class="p">,</span>
+      <span class="p">{</span> <span class="s2">"value"</span><span class="o">:</span><span class="mi">5419100</span><span class="p">,</span>
         <span class="s2">"script"</span><span class="o">:</span><span class="s2">"76a9148c6f28c814116f1ae3d0940b2fb05a68a9507e8a88ac"</span><span class="p">,</span>
-        <span class="s2">"addresses"</span><span class="o">:</span><span class="p">[</span>
-          <span class="s2">"C5vqMGme4FThKnCY44gx1PLgWr86uxRbDm"</span>
-        <span class="p">],</span>
+        <span class="s2">"addresses"</span><span class="o">:</span><span class="p">[</span><span class="s2">"C5vqMGme4FThKnCY44gx1PLgWr86uxRbDm"</span><span class="p">],</span>
         <span class="s2">"script_type"</span><span class="o">:</span><span class="s2">"pay-to-pubkey-hash"</span>
-      <span class="p">}</span>
-    <span class="p">]</span>
+      <span class="p">}]</span>
   <span class="p">},</span>
-  <span class="s2">"tosign"</span><span class="o">:</span><span class="p">[</span>
-    <span class="s2">"770af2c9a9b7b8b1998e36d4c1ce2b8fa3b9d4d6575679a513722d9f478177d2"</span>
-  <span class="p">]</span>
+  <span class="s2">"tosign"</span><span class="o">:</span><span class="p">[</span><span class="s2">"770af2c9a9b7b8b1998e36d4c1ce2b8fa3b9d4d6575679a513722d9f478177d2"</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre>
 
@@ -4751,12 +4737,10 @@ The <b>hash</b> assigned to <a href="#tx">TX</a> within the return object is onl
 <pre class="highlight ruby"><code><span class="c1"># Signing is handled by our SDK in the next step</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-<span class="nv">$privateKeys</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s2">"1551558c3b75f46b71ec068f9e341bf35ee6df361f7b805deb487d8a4d5f055e"</span> <span class="c1">// Address: n3D2YXwvpoPg8FhcWpzJiS3SvKKGD8AXZ4
-</span><span class="p">);</span>
-
 <span class="c1">// Sign the transaction
-</span><span class="nv">$txSkeleton</span><span class="o">-&gt;</span><span class="na">sign</span><span class="p">(</span><span class="nv">$privateKeys</span><span class="p">);</span>
+// Private key for address: C5vqMGme4FThKnCY44gx1PLgWr86uxRbDm
+</span><span class="nv">$privateKeys</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s2">"2c2cc015519b79782bd9c5af66f442e808f573714e3c4dc6df7d79c183963cff"</span><span class="p">);</span>
+<span class="nv">$txSkeleton</span><span class="o">-&gt;</span><span class="na">sign</span><span class="p">(</span><span class="nv">$privateKeys</span><span class="p">);</span>
 </code></pre>
 
 <h3 id="locally-sign-your-transaction">Locally Sign Your Transaction</h3>
@@ -4929,7 +4913,8 @@ curl -d <span class="s1">'{"tx": {...}, "tosign": [ "32b5ea64c253b6b466366647458
  <span class="s2">"tosign"</span><span class="o">=&gt;</span><span class="p">[</span><span class="s2">""</span><span class="p">]}</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-<span class="nv">$txSkeleton</span> <span class="o">=</span> <span class="nv">$txSkeleton</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
+<span class="c1">// Send the transaction
+</span><span class="nv">$txSkeleton</span> <span class="o">=</span> <span class="nv">$txSkeleton</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
 
 <span class="p">{</span>
   <span class="s2">"tx"</span><span class="o">:</span><span class="p">{</span>
@@ -4951,38 +4936,28 @@ curl -d <span class="s1">'{"tx": {...}, "tosign": [ "32b5ea64c253b6b466366647458
     <span class="s2">"vin_sz"</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span>
     <span class="s2">"vout_sz"</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span>
     <span class="s2">"confirmations"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"inputs"</span><span class="o">:</span><span class="p">[</span>
-      <span class="p">{</span>
+    <span class="s2">"inputs"</span><span class="o">:</span><span class="p">[{</span>
         <span class="s2">"prev_hash"</span><span class="o">:</span><span class="s2">"64e39fa5322ee604ad548dc5d4ae1a61b0a575278724d0df7e53dd334f5f13e3"</span><span class="p">,</span>
         <span class="s2">"output_index"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
         <span class="s2">"script"</span><span class="o">:</span><span class="s2">""</span><span class="p">,</span>
         <span class="s2">"output_value"</span><span class="o">:</span><span class="mi">5432100</span><span class="p">,</span>
         <span class="s2">"sequence"</span><span class="o">:</span><span class="mi">4294967295</span><span class="p">,</span>
-        <span class="s2">"addresses"</span><span class="o">:</span><span class="p">[</span>
-          <span class="s2">"C5vqMGme4FThKnCY44gx1PLgWr86uxRbDm"</span>
-        <span class="p">],</span>
+        <span class="s2">"addresses"</span><span class="o">:</span><span class="p">[</span><span class="s2">"C5vqMGme4FThKnCY44gx1PLgWr86uxRbDm"</span><span class="p">],</span>
         <span class="s2">"script_type"</span><span class="o">:</span><span class="s2">""</span><span class="p">,</span>
         <span class="s2">"age"</span><span class="o">:</span><span class="mi">0</span>
       <span class="p">}</span>
     <span class="p">],</span>
     <span class="s2">"outputs"</span><span class="o">:</span><span class="p">[</span>
-      <span class="p">{</span>
-        <span class="s2">"value"</span><span class="o">:</span><span class="mi">1000</span><span class="p">,</span>
+      <span class="p">{</span><span class="s2">"value"</span><span class="o">:</span><span class="mi">1000</span><span class="p">,</span>
         <span class="s2">"script"</span><span class="o">:</span><span class="s2">"76a9147b2b09ad46d95e177df6969a275db321c66cecf388ac"</span><span class="p">,</span>
-        <span class="s2">"addresses"</span><span class="o">:</span><span class="p">[</span>
-          <span class="s2">"C4MYFr4EAdqEeUKxTnPUF3d3whWcPMz1Fi"</span>
-        <span class="p">],</span>
+        <span class="s2">"addresses"</span><span class="o">:</span><span class="p">[</span><span class="s2">"C4MYFr4EAdqEeUKxTnPUF3d3whWcPMz1Fi"</span><span class="p">],</span>
         <span class="s2">"script_type"</span><span class="o">:</span><span class="s2">"pay-to-pubkey-hash"</span>
       <span class="p">},</span>
-      <span class="p">{</span>
-        <span class="s2">"value"</span><span class="o">:</span><span class="mi">5419100</span><span class="p">,</span>
+      <span class="p">{</span> <span class="s2">"value"</span><span class="o">:</span><span class="mi">5419100</span><span class="p">,</span>
         <span class="s2">"script"</span><span class="o">:</span><span class="s2">"76a9148c6f28c814116f1ae3d0940b2fb05a68a9507e8a88ac"</span><span class="p">,</span>
-        <span class="s2">"addresses"</span><span class="o">:</span><span class="p">[</span>
-          <span class="s2">"C5vqMGme4FThKnCY44gx1PLgWr86uxRbDm"</span>
-        <span class="p">],</span>
+        <span class="s2">"addresses"</span><span class="o">:</span><span class="p">[</span><span class="s2">"C5vqMGme4FThKnCY44gx1PLgWr86uxRbDm"</span><span class="p">],</span>
         <span class="s2">"script_type"</span><span class="o">:</span><span class="s2">"pay-to-pubkey-hash"</span>
-      <span class="p">}</span>
-    <span class="p">]</span>
+      <span class="p">}]</span>
   <span class="p">},</span>
   <span class="s2">"tosign"</span><span class="o">:</span><span class="p">[]</span>
 <span class="p">}</span>
