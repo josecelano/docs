@@ -104,6 +104,10 @@ curl is a tool to transfer data from or to a server, using one of the supported 
 <pre class="highlight ruby"><code><span class="c1"># Ruby examples use irb, and our official ruby sdk:</span>
 <span class="c1"># https://github.com/blockcypher/ruby-client</span>
 
+<span class="c1"># You can install it easily from rubygems.org:</span>
+<span class="c1"># https://rubygems.org/gems/blockcypher-ruby</span>
+<span class="n">gem</span> <span class="n">install</span> <span class="n">blockcypher</span><span class="o">-</span><span class="n">ruby</span>
+
 <span class="c1"># Remember to require the library after installing</span>
 <span class="o">&gt;</span> <span class="nb">require</span> <span class="s1">'blockcypher'</span>
 <span class="o">=&gt;</span> <span class="kp">true</span>
@@ -140,7 +144,7 @@ https://github.com/blockcypher/php-client
 Irrelevant code is not shown in samples. You can get the full sample version from:
 https://github.com/blockcypher/php-client/tree/master/sample
 
-Most samples begin with this header (sometimes omitted):
+All samples begin with something like this (but omitted in docs site):
 <span class="cp">&lt;?php</span>
 <span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
 
@@ -150,7 +154,7 @@ Most samples begin with this header (sometimes omitted):
 </span>
 <span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
     <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'$YOUR_TOKEN'</span><span class="p">),</span>
     <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
 <span class="p">);</span>
 </code></pre>
@@ -304,19 +308,7 @@ Currently, we only have cURL, JavaScript, and Python code samples on this page, 
 <span class="c1">// Run on console:
 // php -f .\sample\chain-api\ChainEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Blockchain</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$chain</span> <span class="o">=</span> <span class="nx">Blockchain</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'BTC.main'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$chain</span> <span class="o">=</span> <span class="nx">Blockchain</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'BTC.main'</span><span class="p">);</span>
 
 <span class="p">{</span>
   <span class="s2">"name"</span><span class="o">:</span><span class="s2">"BTC.main"</span><span class="p">,</span>
@@ -425,12 +417,6 @@ curl https://api.blockcypher.com/v1/btc/main?token<span class="o">=</span><span 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Chain</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
 <span class="c1"># Adding your token as client credential to API context
 </span><span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
     <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
@@ -605,17 +591,6 @@ curl https://api.blockcypher.com/v1/btc/main/blocks/5;6;7
 // php -f .\sample\introduction\Batching.php
 // Batching blocks 5, 6, and 7
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
 <span class="nv">$blocks</span> <span class="o">=</span> <span class="nx">\BlockCypher\Api\Block</span><span class="o">::</span><span class="na">getMultiple</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'5'</span><span class="p">,</span> <span class="s1">'6'</span><span class="p">,</span> <span class="s1">'7'</span><span class="p">),</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContexts</span><span class="p">[</span><span class="s1">'BTC.main'</span><span class="p">]);</span>
 
 <span class="p">[{</span>
@@ -754,24 +729,8 @@ curl -d <span class="s1">'{"address": "CFqoZmZ3ePwK5wnkhxJjJAQKJ82C7RJdmd", "amo
 // Run on console:
 // php -f .\sample\introduction\GenerateBcyAddress.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\AddressKeyChain</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'test'</span><span class="p">,</span> <span class="s1">'bcy'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
 <span class="nv">$addressKeyChain</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AddressKeyChain</span><span class="p">();</span>
-
-<span class="c1">// For Sample Purposes Only.
-</span><span class="nv">$request</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$addressKeyChain</span><span class="p">;</span>
-
-<span class="nv">$addressKeyChain</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$addressKeyChain</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 
 <span class="p">{</span>
   <span class="s2">"private"</span><span class="o">:</span><span class="s2">"40e0d6e6210307b9b9d0113bceb9b8c5be6b9e010a03e07f25f75f462ed00a90"</span><span class="p">,</span>
@@ -781,24 +740,11 @@ curl -d <span class="s1">'{"address": "CFqoZmZ3ePwK5wnkhxJjJAQKJ82C7RJdmd", "amo
 <span class="p">}</span>
 
 <span class="o">&lt;?</span><span class="nx">php</span>
-
 <span class="c1">// Fund prior address with faucet
 // Run on console:
 // php -f .\sample\introduction\FundBcyAddressWithFaucetShortVersion.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Faucet</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'test'</span><span class="p">,</span> <span class="s1">'bcy'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$faucetResponse</span> <span class="o">=</span> <span class="nx">Faucet</span><span class="o">::</span><span class="na">fundAddress</span><span class="p">(</span><span class="s1">'Bxi1GmU6xgqgyBEzugcqFZRLyJd1cpEv2S'</span><span class="p">,</span> <span class="mi">100000</span><span class="p">,</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$faucetResponse</span> <span class="o">=</span> <span class="nx">Faucet</span><span class="o">::</span><span class="na">fundAddress</span><span class="p">(</span><span class="s1">'Bxi1GmU6xgqgyBEzugcqFZRLyJd1cpEv2S'</span><span class="p">,</span> <span class="mi">100000</span><span class="p">);</span>
 
 <span class="p">{</span>
   <span class="s2">"tx_ref"</span><span class="o">:</span><span class="s2">"0fa68cf5c39dbd918a5ca49fc092be36b8bcece83cbfed919ad6c77b5f24cceb"</span>
@@ -824,9 +770,7 @@ On the BlockCypher Test Chain, the faucet will refuse to fund an address with mo
 <span class="o">}</span>
 </code></pre>
 <pre class="highlight python"><code></code></pre>
-<pre class="highlight php"><code>// All PHP client Objects are listed in:
-// https://github.com/blockcypher/php-client/tree/master/lib/BlockCypher/Api
-</code></pre>
+<pre class="highlight php"><code></code></pre>
 
 <p>Before diving into BlockCypher&rsquo;s endpoints, this section details all the Objects exposed and expected by the API. Some of you might be more interested in the endpoints themselves, in which case, feel free to <a href="#blockchain-api">skip to the next section.</a> But for others, a section dedicated to all of BlockCypher&rsquo;s Objects might prove a useful overview, especially if you&rsquo;re new to Blockchain development in general. And in either case, this section provides a comprehensive reference for Objects in the API. For each Object there&rsquo;s a description and a link to a germane API endpoint.</p>
 
@@ -856,42 +800,7 @@ Objects sometimes contain <b>attributes</b> that are <b><i>optional.</i></b> The
 </code></pre>
 <pre class="highlight javascript"><code></code></pre>
 <pre class="highlight python"><code></code></pre>
-<pre class="highlight php"><code><span class="cp">&lt;?php</span>
-
-<span class="c1">// Run on console:
-// php -f .\sample\chain-api\ChainEndpoint.php
-</span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Blockchain</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$chain</span> <span class="o">=</span> <span class="nx">Blockchain</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'BTC.main'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
-
-<span class="p">{</span>
-  <span class="s2">"name"</span><span class="o">:</span><span class="s2">"BTC.main"</span><span class="p">,</span>
-  <span class="s2">"height"</span><span class="o">:</span><span class="mi">361290</span><span class="p">,</span>
-  <span class="s2">"hash"</span><span class="o">:</span><span class="s2">"0000000000000000152195979e99e62bcd9366e7d32653a343501aae119bfaf8"</span><span class="p">,</span>
-  <span class="s2">"time"</span><span class="o">:</span><span class="s2">"2015-06-17T09:13:23.000955233Z"</span><span class="p">,</span>
-  <span class="s2">"latest_url"</span><span class="o">:</span><span class="s2">"https://api.blockcypher.com/v1/btc/main/blocks/0000000000000000152195979e99e62bcd9366e7d32653a343501aae119bfaf8"</span><span class="p">,</span>
-  <span class="s2">"previous_hash"</span><span class="o">:</span><span class="s2">"00000000000000000c077eebd15261811bd9ea7c9784ae5482636b5e529ce932"</span><span class="p">,</span>
-  <span class="s2">"previous_url"</span><span class="o">:</span><span class="s2">"https://api.blockcypher.com/v1/btc/main/blocks/00000000000000000c077eebd15261811bd9ea7c9784ae5482636b5e529ce932"</span><span class="p">,</span>
-  <span class="s2">"peer_count"</span><span class="o">:</span><span class="mi">250</span><span class="p">,</span>
-  <span class="s2">"unconfirmed_count"</span><span class="o">:</span><span class="mi">733</span><span class="p">,</span>
-  <span class="s2">"high_fee_per_kb"</span><span class="o">:</span><span class="mi">45024</span><span class="p">,</span>
-  <span class="s2">"medium_fee_per_kb"</span><span class="o">:</span><span class="mi">26134</span><span class="p">,</span>
-  <span class="s2">"low_fee_per_kb"</span><span class="o">:</span><span class="mi">12490</span><span class="p">,</span>
-  <span class="s2">"last_fork_height"</span><span class="o">:</span><span class="mi">360362</span><span class="p">,</span>
-  <span class="s2">"last_fork_hash"</span><span class="o">:</span><span class="s2">"000000000000000002d5cf67bfaa92ba5b371c1590eb48d25031c669ef6233a0"</span>
-<span class="p">}</span>
-</code></pre>
+<pre class="highlight php"><code></code></pre>
 
 <p>A Blockchain represents the current state of a particular blockchain from the <a href="#restful-resources">Coin/Chain resources</a> that BlockCypher supports. Typically returned from the <a href="#chain-endpoint">Chain API endpoint</a>.</p>
 
@@ -1003,48 +912,7 @@ Objects sometimes contain <b>attributes</b> that are <b><i>optional.</i></b> The
 </code></pre>
 <pre class="highlight javascript"><code></code></pre>
 <pre class="highlight python"><code></code></pre>
-<pre class="highlight php"><code><span class="cp">&lt;?php</span>
-<span class="c1">// Run on console:
-// php -f .\sample\block-api\BlockHashEndpoint.php
-</span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Block</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$block</span> <span class="o">=</span> <span class="nx">Block</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'0000000000000000189bba3564a63772107b5673c940c16f12662b3e8546b412'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
-
-<span class="p">{</span>
-  <span class="s2">"hash"</span><span class="o">:</span><span class="s2">"0000000000000000189bba3564a63772107b5673c940c16f12662b3e8546b412"</span><span class="p">,</span>
-  <span class="s2">"height"</span><span class="o">:</span><span class="mi">294322</span><span class="p">,</span>
-  <span class="s2">"chain"</span><span class="o">:</span><span class="s2">"BTC.main"</span><span class="p">,</span>
-  <span class="s2">"total"</span><span class="o">:</span><span class="mi">1146652915</span><span class="p">,</span>
-  <span class="s2">"fees"</span><span class="o">:</span><span class="mi">130999</span><span class="p">,</span>
-  <span class="s2">"ver"</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span>
-  <span class="s2">"time"</span><span class="o">:</span><span class="s2">"2014-04-05T07:49:18Z"</span><span class="p">,</span>
-  <span class="s2">"received_time"</span><span class="o">:</span><span class="s2">"2014-04-05T07:49:18Z"</span><span class="p">,</span>
-  <span class="s2">"bits"</span><span class="o">:</span><span class="mi">419486617</span><span class="p">,</span>
-  <span class="s2">"nonce"</span><span class="o">:</span><span class="mi">1225187768</span><span class="p">,</span>
-  <span class="s2">"n_tx"</span><span class="o">:</span><span class="mi">10</span><span class="p">,</span>
-  <span class="s2">"prev_block"</span><span class="o">:</span><span class="s2">"0000000000000000ced0958bd27720b71d32c5847e40660aaca39f33c298abb0"</span><span class="p">,</span>
-  <span class="s2">"mrkl_root"</span><span class="o">:</span><span class="s2">"359d624d37aee1efa5662b7f5dbc390e996d561afc8148e8d716cf6ad765a952"</span><span class="p">,</span>
-  <span class="s2">"txids"</span><span class="o">:</span><span class="p">[</span>
-    <span class="s2">"32b3b86e40d996b1f281e24e8d4af2ceacbf874c4038369cc21baa807409b277"</span><span class="p">,</span>
-    <span class="s2">"1579f716359ba1a207f70248135f5e5fadf539be1dcf5300613aedcb6577d287"</span><span class="p">,</span>
-    <span class="o">...</span>
-  <span class="p">],</span>
-  <span class="s2">"depth"</span><span class="o">:</span><span class="mi">66968</span><span class="p">,</span>
-  <span class="s2">"prev_block_url"</span><span class="o">:</span><span class="s2">"https://api.blockcypher.com/v1/btc/main/blocks/0000000000000000ced0958bd27720b71d32c5847e40660aaca39f33c298abb0"</span><span class="p">,</span>
-  <span class="s2">"tx_url"</span><span class="o">:</span><span class="s2">"https://api.blockcypher.com/v1/btc/main/txs/"</span>
-<span class="p">}</span>
-</code></pre>
+<pre class="highlight php"><code></code></pre>
 
 <p>A Block represents the current state of a particular block from a <a href="#blockchain">Blockchain</a>. Typically returned from the <a href="#block-hash-endpoint">Block Hash</a> and <a href="#block-height-endpoint">Block Height</a> endpoints.</p>
 
@@ -1205,78 +1073,7 @@ Objects sometimes contain <b>attributes</b> that are <b><i>optional.</i></b> The
 </code></pre>
 <pre class="highlight javascript"><code></code></pre>
 <pre class="highlight python"><code></code></pre>
-<pre class="highlight php"><code><span class="cp">&lt;?php</span>
-
-<span class="c1">// Run on console:
-// php -f .\sample\transaction-api\TransactionHashEndpoint.php
-</span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\TX</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$transaction</span> <span class="o">=</span> <span class="nx">TX</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'f854aebae95150b379cc1187d848d58225f3c4157fe992bcd166f58bd5063449'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
-
-<span class="p">{</span>
-<span class="s2">"block_hash"</span><span class="o">:</span> <span class="s2">"0000000000000000c504bdea36e531d80..."</span><span class="p">,</span>
-<span class="s2">"block_height"</span><span class="o">:</span> <span class="mi">293000</span><span class="p">,</span>
-<span class="s2">"hash"</span><span class="o">:</span> <span class="s2">"f854aebae95150b379cc1187d848d58225f3c41..."</span><span class="p">,</span>
-<span class="s2">"addresses"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="s2">"13XXaBufpMvqRqLkyDty1AXqueZHVe6iyy"</span><span class="p">,</span>
-    <span class="s2">"19YtzZdcfs1V2ZCgyRWo8i2wLT8ND1Tu4L"</span><span class="p">,</span>
-    <span class="s2">"1BNiazBzCxJacAKo2yL83Wq1VJ18AYzNHy"</span><span class="p">,</span>
-    <span class="s2">"1GbMfYui17L5m6sAy3L3WXAtf1P32bxJXq"</span><span class="p">,</span>
-    <span class="s2">"1N2f642sbgCMbNtXFajz9XDACDFnFzdXzV"</span>
-<span class="p">],</span>
-<span class="s2">"total"</span><span class="o">:</span> <span class="mi">70320221545</span><span class="p">,</span>
-<span class="s2">"fees"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-<span class="s2">"size"</span><span class="o">:</span> <span class="mi">636</span><span class="p">,</span>
-<span class="s2">"preference"</span><span class="o">:</span> <span class="s2">"low"</span><span class="p">,</span>
-<span class="s2">"relayed_by"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-<span class="s2">"confirmed"</span><span class="o">:</span> <span class="s2">"2014-03-29T01:29:19Z"</span><span class="p">,</span>
-<span class="s2">"received"</span><span class="o">:</span> <span class="s2">"2014-03-29T01:29:19Z"</span><span class="p">,</span>
-<span class="s2">"ver"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-<span class="s2">"lock_time"</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-<span class="s2">"double_spend"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-<span class="s2">"vin_sz"</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
-<span class="s2">"vout_sz"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-<span class="s2">"confirmations"</span><span class="o">:</span> <span class="mi">63171</span><span class="p">,</span>
-<span class="s2">"confidence"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-<span class="s2">"inputs"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="s2">"prev_hash"</span><span class="o">:</span> <span class="s2">"583910b7bf90ab802e22e5c25a89..."</span><span class="p">,</span>
-        <span class="s2">"output_index"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s2">"script"</span><span class="o">:</span> <span class="s2">"4830450220504b1ccfddf508422bdd8..."</span><span class="p">,</span>
-        <span class="s2">"output_value"</span><span class="o">:</span> <span class="mi">16450000</span><span class="p">,</span>
-        <span class="s2">"sequence"</span><span class="o">:</span> <span class="mi">4294967295</span><span class="p">,</span>
-        <span class="s2">"addresses"</span><span class="o">:</span> <span class="p">[</span>
-            <span class="s2">"1GbMfYui17L5m6sAy3L3WXAtf1P32bxJXq"</span>
-        <span class="p">],</span>
-        <span class="s2">"script_type"</span><span class="o">:</span> <span class="s2">"pay-to-pubkey-hash"</span>
-    <span class="p">},</span>
-    <span class="o">...</span><span class="p">,</span>
-    <span class="o">...</span><span class="p">,</span>
-<span class="p">],</span>
-<span class="s2">"outputs"</span><span class="o">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="s2">"value"</span><span class="o">:</span> <span class="mi">70320221545</span><span class="p">,</span>
-        <span class="s2">"script"</span><span class="o">:</span> <span class="s2">"76a914e6aad9d712c419ea8febf009a..."</span><span class="p">,</span>
-        <span class="s2">"spent_by"</span><span class="o">:</span> <span class="s2">"35832d6c70b98b54e9a53ab2d5117..."</span><span class="p">,</span>
-        <span class="s2">"addresses"</span><span class="o">:</span> <span class="p">[</span>
-            <span class="s2">"1N2f642sbgCMbNtXFajz9XDACDFnFzdXzV"</span>
-        <span class="p">],</span>
-        <span class="s2">"script_type"</span><span class="o">:</span> <span class="s2">"pay-to-pubkey-hash"</span>
-    <span class="p">}</span>
-<span class="p">]</span>
-<span class="p">}</span>
-</code></pre>
+<pre class="highlight php"><code></code></pre>
 
 <p>A TX represents the current state of a particular transaction from either a <a href="#block">Block</a> within a <a href="#blockchain">Blockchain</a>, or an unconfirmed transaction that has yet to be included in a <a href="#block">Block</a>. Typically returned from the <a href="#unconfirmed-transactions-endpoint">Unconfirmed Transactions</a> and <a href="#transaction-hash">Transaction Hash</a> endpoints.</p>
 
@@ -1425,19 +1222,7 @@ Objects sometimes contain <b>attributes</b> that are <b><i>optional.</i></b> The
 </code></pre>
 <pre class="highlight javascript"><code></code></pre>
 <pre class="highlight python"><code></code></pre>
-<pre class="highlight php"><code>{
-"prev_hash": "e5c9be87798b0fa8ad55a22b5d731d6f50d72bffaa6179f9999499e57388cc33",
-"output_index": 1,
-"script": "004730440220689409a16c98fa1659cae4c20...",
-"output_value": 2450698356,
-"sequence": 4294967295,
-"addresses": [
-    "34ch2jrhYXDFsLK1FZQ3SjqgFRnX8mGC5W"
-],
-"script_type": "pay-to-script-hash",
-"age": 5
-}
-</code></pre>
+<pre class="highlight php"><code></code></pre>
 
 <p>A TXInput represents an input consumed within a transaction. Typically found within an array in a <a href="#tx">TX</a>. In most cases, TXInputs are from previous <a href="https://bitcoin.org/en/glossary/unspent-transaction-output">UTXOs</a>, with the most prominent exceptions being attempted double-spend and <a href="https://bitcoin.org/en/glossary/coinbase">coinbase</a> inputs.</p>
 
@@ -1503,16 +1288,7 @@ Objects sometimes contain <b>attributes</b> that are <b><i>optional.</i></b> The
 </code></pre>
 <pre class="highlight javascript"><code></code></pre>
 <pre class="highlight python"><code></code></pre>
-<pre class="highlight php"><code>{
-"value": 70320221545,
-"script": "76a914e6aad9d712c419ea8febf009a3f3bfdd8d222fac88ac",
-"spent_by": "35832d6c70b98b54e9a53ab2d51176eb19ad11bc4505d6bb1ea6c51a68cb92ee",
-"addresses": [
-    "1N2f642sbgCMbNtXFajz9XDACDFnFzdXzV"
-],
-"script_type": "pay-to-pubkey-hash"
-}
-</code></pre>
+<pre class="highlight php"><code></code></pre>
 
 <p>A TXOutput represents an output created by a transaction. Typically found within an array in a <a href="#tx">TX</a>.</p>
 
@@ -1563,32 +1339,7 @@ Objects sometimes contain <b>attributes</b> that are <b><i>optional.</i></b> The
 </code></pre>
 <pre class="highlight javascript"><code></code></pre>
 <pre class="highlight python"><code></code></pre>
-<pre class="highlight php"><code><span class="cp">&lt;?php</span>
-<span class="c1">// Run on console:
-// php -f .\sample\confidence-factor\TransactionConfidenceEndpoint.php
-</span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\TXConfidence</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$txConfidence</span> <span class="o">=</span> <span class="nx">TXConfidence</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'43fa951e1bea87c282f6725cf8bdc08bb48761396c3af8dd5a41a085ab62acc9'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
-
-<span class="p">{</span>
-  <span class="s2">"age_millis"</span><span class="o">:</span><span class="mi">2188284017</span><span class="p">,</span>
-  <span class="s2">"receive_count"</span><span class="o">:-</span><span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"confidence"</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"txhash"</span><span class="o">:</span><span class="s2">"43fa951e1bea87c282f6725cf8bdc08bb48761396c3af8dd5a41a085ab62acc9"</span><span class="p">,</span>
-  <span class="s2">"txurl"</span><span class="o">:</span><span class="s2">"https://api.blockcypher.com/v1/btc/main/txs/43fa951e1bea87c282f6725cf8bdc08bb48761396c3af8dd5a41a085ab62acc9"</span>
-<span class="p">}</span>
-</code></pre>
+<pre class="highlight php"><code></code></pre>
 
 <p>A TXConfidence represents information about the confidence that an unconfirmed transaction will make it into the next block. Typically used as a return object from the <a href="#transaction-confidence-endpoint">Transaction Confidence Endpoint.</a></p>
 
@@ -1641,18 +1392,7 @@ Objects sometimes contain <b>attributes</b> that are <b><i>optional.</i></b> The
 </code></pre>
 <pre class="highlight javascript"><code></code></pre>
 <pre class="highlight python"><code></code></pre>
-<pre class="highlight php"><code>{
-  "tx_hash": "14b1052855bbf6561bc4db8aa501762e7cc1e86994dda9e782a6b73b1ce0dc1e",
-  "block_height": 302013,
-  "tx_input_n": -1,
-  "tx_output_n": 0,
-  "value": 20213,
-  "spent": false,
-  "confirmations": 54405,
-  "confirmed": "2014-05-22T03:46:25Z",
-  "double_spend": false
-}
-</code></pre>
+<pre class="highlight php"><code></code></pre>
 
 <p>A TXRef object represents summarized data about a transaction input or output. Typically found in an array within an <a href="#address">Address</a> object, which is usually returned from the standard <a href="#address-endpoint">Address Endpoint</a>.</p>
 
@@ -1775,100 +1515,7 @@ Objects sometimes contain <b>attributes</b> that are <b><i>optional.</i></b> The
 </code></pre>
 <pre class="highlight javascript"><code></code></pre>
 <pre class="highlight python"><code></code></pre>
-<pre class="highlight php"><code><span class="cp">&lt;?php</span>
-<span class="c1">// Run on console:
-// php -f .\sample\transaction-api\NewTransactionEndpoint.php
-</span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Transaction</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'test'</span><span class="p">,</span> <span class="s1">'bcy'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="c1">// Create a new instance of Transaction object
-</span><span class="nv">$tx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Transaction</span><span class="p">();</span>
-
-<span class="c1">// Tx inputs
-</span><span class="nv">$input</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\BlockCypher\Api\Input</span><span class="p">();</span>
-<span class="nv">$input</span><span class="o">-&gt;</span><span class="na">addAddress</span><span class="p">(</span><span class="s2">"C5vqMGme4FThKnCY44gx1PLgWr86uxRbDm"</span><span class="p">);</span>
-<span class="nv">$tx</span><span class="o">-&gt;</span><span class="na">addInput</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
-<span class="c1">// Tx outputs
-</span><span class="nv">$output</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\BlockCypher\Api\Output</span><span class="p">();</span>
-<span class="nv">$output</span><span class="o">-&gt;</span><span class="na">addAddress</span><span class="p">(</span><span class="s2">"C4MYFr4EAdqEeUKxTnPUF3d3whWcPMz1Fi"</span><span class="p">);</span>
-<span class="nv">$tx</span><span class="o">-&gt;</span><span class="na">addOutput</span><span class="p">(</span><span class="nv">$output</span><span class="p">);</span>
-<span class="c1">// Tx amount
-</span><span class="nv">$output</span><span class="o">-&gt;</span><span class="na">setValue</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span> <span class="c1">// Satoshis
-</span>
-<span class="c1">// For Sample Purposes Only.
-</span><span class="nv">$request</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$tx</span><span class="p">;</span>
-
-<span class="c1">// ### Create New Transaction
-</span><span class="nv">$output</span> <span class="o">=</span> <span class="nv">$tx</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$apiContext</span><span class="p">);</span>
-
-<span class="p">{</span>
-  <span class="s2">"tx"</span><span class="o">:</span><span class="p">{</span>
-    <span class="s2">"block_height"</span><span class="o">:-</span><span class="mi">1</span><span class="p">,</span>
-    <span class="s2">"hash"</span><span class="o">:</span><span class="s2">"edb785c310ea58c70245c9a89130efca8fb0a02d4bee47b18542986e7bf95806"</span><span class="p">,</span>
-    <span class="s2">"addresses"</span><span class="o">:</span><span class="p">[</span>
-      <span class="s2">"C5vqMGme4FThKnCY44gx1PLgWr86uxRbDm"</span><span class="p">,</span>
-      <span class="s2">"C4MYFr4EAdqEeUKxTnPUF3d3whWcPMz1Fi"</span>
-    <span class="p">],</span>
-    <span class="s2">"total"</span><span class="o">:</span><span class="mi">5420100</span><span class="p">,</span>
-    <span class="s2">"fees"</span><span class="o">:</span><span class="mi">12000</span><span class="p">,</span>
-    <span class="s2">"size"</span><span class="o">:</span><span class="mi">119</span><span class="p">,</span>
-    <span class="s2">"preference"</span><span class="o">:</span><span class="s2">"high"</span><span class="p">,</span>
-    <span class="s2">"relayed_by"</span><span class="o">:</span><span class="s2">"88.7.90.149"</span><span class="p">,</span>
-    <span class="s2">"received"</span><span class="o">:</span><span class="s2">"2015-06-17T10:23:02.475392139Z"</span><span class="p">,</span>
-    <span class="s2">"ver"</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span>
-    <span class="s2">"lock_time"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"double_spend"</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span>
-    <span class="s2">"vin_sz"</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span>
-    <span class="s2">"vout_sz"</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span>
-    <span class="s2">"confirmations"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"inputs"</span><span class="o">:</span><span class="p">[</span>
-      <span class="p">{</span>
-        <span class="s2">"prev_hash"</span><span class="o">:</span><span class="s2">"64e39fa5322ee604ad548dc5d4ae1a61b0a575278724d0df7e53dd334f5f13e3"</span><span class="p">,</span>
-        <span class="s2">"output_index"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-        <span class="s2">"script"</span><span class="o">:</span><span class="s2">""</span><span class="p">,</span>
-        <span class="s2">"output_value"</span><span class="o">:</span><span class="mi">5432100</span><span class="p">,</span>
-        <span class="s2">"sequence"</span><span class="o">:</span><span class="mi">4294967295</span><span class="p">,</span>
-        <span class="s2">"addresses"</span><span class="o">:</span><span class="p">[</span>
-          <span class="s2">"C5vqMGme4FThKnCY44gx1PLgWr86uxRbDm"</span>
-        <span class="p">],</span>
-        <span class="s2">"script_type"</span><span class="o">:</span><span class="s2">""</span><span class="p">,</span>
-        <span class="s2">"age"</span><span class="o">:</span><span class="mi">0</span>
-      <span class="p">}</span>
-    <span class="p">],</span>
-    <span class="s2">"outputs"</span><span class="o">:</span><span class="p">[</span>
-      <span class="p">{</span>
-        <span class="s2">"value"</span><span class="o">:</span><span class="mi">1000</span><span class="p">,</span>
-        <span class="s2">"script"</span><span class="o">:</span><span class="s2">"76a9147b2b09ad46d95e177df6969a275db321c66cecf388ac"</span><span class="p">,</span>
-        <span class="s2">"addresses"</span><span class="o">:</span><span class="p">[</span>
-          <span class="s2">"C4MYFr4EAdqEeUKxTnPUF3d3whWcPMz1Fi"</span>
-        <span class="p">],</span>
-        <span class="s2">"script_type"</span><span class="o">:</span><span class="s2">"pay-to-pubkey-hash"</span>
-      <span class="p">},</span>
-      <span class="p">{</span>
-        <span class="s2">"value"</span><span class="o">:</span><span class="mi">5419100</span><span class="p">,</span>
-        <span class="s2">"script"</span><span class="o">:</span><span class="s2">"76a9148c6f28c814116f1ae3d0940b2fb05a68a9507e8a88ac"</span><span class="p">,</span>
-        <span class="s2">"addresses"</span><span class="o">:</span><span class="p">[</span>
-          <span class="s2">"C5vqMGme4FThKnCY44gx1PLgWr86uxRbDm"</span>
-        <span class="p">],</span>
-        <span class="s2">"script_type"</span><span class="o">:</span><span class="s2">"pay-to-pubkey-hash"</span>
-      <span class="p">}</span>
-    <span class="p">]</span>
-  <span class="p">},</span>
-  <span class="s2">"tosign"</span><span class="o">:</span><span class="p">[</span>
-    <span class="s2">"770af2c9a9b7b8b1998e36d4c1ce2b8fa3b9d4d6575679a513722d9f478177d2"</span>
-  <span class="p">]</span>
-<span class="p">}</span>
-</code></pre>
+<pre class="highlight php"><code></code></pre>
 
 <p>A TXSkeleton is a convenience/wrapper Object that&rsquo;s used primarily when <a href="#creating-transactions">Creating Transactions</a> through the <a href="#new-transaction-endpoint">New</a> and <a href="#send-transaction-endpoint">Send</a> endpoints.</p>
 
@@ -1961,16 +1608,7 @@ Objects sometimes contain <b>attributes</b> that are <b><i>optional.</i></b> The
 </code></pre>
 <pre class="highlight javascript"><code></code></pre>
 <pre class="highlight python"><code></code></pre>
-<pre class="highlight php"><code>{
-  "from_pubkey": "03bb318b00de944086fad67ab78a832eb1bf26916053ecd3b14a3f48f9fbe0821f",
-  "to_address": "mrS82nWF3TCfhafSaKnmUUktGNYuTZn1Ap",
-  "value_satoshis": 5000,
-  "token": "477a17a15d55b408038404a46c059ef9",
-  "signatures": [
-    "3045022100..."
-  ]
-}
-</code></pre>
+<pre class="highlight php"><code></code></pre>
 
 <p>A MicroTX represents a streamlined&mdash;and typically much lower value&mdash;microtransaction, one which BlockCypher can sign for you if you send your private key. MicroTXs can also be signed on the client-side without ever sending your private key. You&rsquo;ll find these objects used in the <a href="#microtransaction-api">Microtransaction API.</a></p>
 
@@ -2080,51 +1718,7 @@ Only one of these three fields is required for the microtransaction endpoint: <b
 </code></pre>
 <pre class="highlight javascript"><code></code></pre>
 <pre class="highlight python"><code></code></pre>
-<pre class="highlight php"><code><span class="cp">&lt;?php</span>
-<span class="c1">// Run on console:
-// php -f .\sample\address-api\AddressEndpoint.php
-</span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Address</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$address</span> <span class="o">=</span> <span class="nx">Address</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'1DEP8i3QJCsomS4BSMY2RpU1upv62aGvhD'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
-
-<span class="p">{</span>
-  <span class="s2">"address"</span><span class="o">:</span><span class="s2">"1DEP8i3QJCsomS4BSMY2RpU1upv62aGvhD"</span><span class="p">,</span>
-  <span class="s2">"total_received"</span><span class="o">:</span><span class="mi">4433416</span><span class="p">,</span>
-  <span class="s2">"total_sent"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"balance"</span><span class="o">:</span><span class="mi">4433416</span><span class="p">,</span>
-  <span class="s2">"unconfirmed_balance"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"final_balance"</span><span class="o">:</span><span class="mi">4433416</span><span class="p">,</span>
-  <span class="s2">"n_tx"</span><span class="o">:</span><span class="mi">7</span><span class="p">,</span>
-  <span class="s2">"unconfirmed_n_tx"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"final_n_tx"</span><span class="o">:</span><span class="mi">7</span><span class="p">,</span>
-  <span class="s2">"txrefs"</span><span class="o">:</span><span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s2">"tx_hash"</span><span class="o">:</span><span class="s2">"14b1052855bbf6561bc4db8aa501762e7cc1e86994dda9e782a6b73b1ce0dc1e"</span><span class="p">,</span>
-      <span class="s2">"block_height"</span><span class="o">:</span><span class="mi">302013</span><span class="p">,</span>
-      <span class="s2">"tx_input_n"</span><span class="o">:-</span><span class="mi">1</span><span class="p">,</span>
-      <span class="s2">"tx_output_n"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-      <span class="s2">"value"</span><span class="o">:</span><span class="mi">20213</span><span class="p">,</span>
-      <span class="s2">"spent"</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span>
-      <span class="s2">"confirmations"</span><span class="o">:</span><span class="mi">58584</span><span class="p">,</span>
-      <span class="s2">"confirmed"</span><span class="o">:</span><span class="s2">"2014-05-22T03:46:25Z"</span><span class="p">,</span>
-      <span class="s2">"double_spend"</span><span class="o">:</span><span class="kc">false</span>
-    <span class="p">},</span>
-    <span class="o">...</span>
-  <span class="p">],</span>
-  <span class="s2">"tx_url"</span><span class="o">:</span><span class="s2">"https://api.blockcypher.com/v1/btc/main/txs/"</span>
-<span class="p">}</span>
-</code></pre>
+<pre class="highlight php"><code></code></pre>
 
 <p>An Address represents a public address on a blockchain, and contains information about the state of balances and transactions related to this address. Typically returned from the <a href="#address-balance-endpoint">Address Balance</a>, <a href="#address-endpoint">Address</a>, and <a href="#address-detail-endpoint">Address Detail Endpoint</a>.</p>
 
@@ -2219,37 +1813,7 @@ Only one of these three fields is required for the microtransaction endpoint: <b
 </code></pre>
 <pre class="highlight javascript"><code></code></pre>
 <pre class="highlight python"><code></code></pre>
-<pre class="highlight php"><code><span class="cp">&lt;?php</span>
-
-<span class="c1">// Run on console:
-// php -f .\sample\address-api\GenerateAddressEndpoint.php
-</span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\AddressKeyChain</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$addressKeyChain</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AddressKeyChain</span><span class="p">();</span>
-
-<span class="c1">// For Sample Purposes Only.
-</span><span class="nv">$request</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$addressKeyChain</span><span class="p">;</span>
-
-<span class="nv">$addressKeyChain</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$apiContexts</span><span class="p">[</span><span class="s1">'BTC.main'</span><span class="p">]);</span>
-
-<span class="p">{</span>
-  <span class="s2">"private"</span><span class="o">:</span><span class="s2">"3f3cea5a7373011d6f51844bf986abe6950d7a30eaaab247fc951c3ea9f13705"</span><span class="p">,</span>
-  <span class="s2">"public"</span><span class="o">:</span><span class="s2">"02d1c8ccc7131a3c39b9e7001741f68d339e5d6941caf31fe9f43b15d6cf09dcb9"</span><span class="p">,</span>
-  <span class="s2">"address"</span><span class="o">:</span><span class="s2">"1rA7AB93qziWzHfTFXn5n3GYJ1mhkG8tn"</span><span class="p">,</span>
-  <span class="s2">"wif"</span><span class="o">:</span><span class="s2">"KyLdumvGqB86v3D9sKqAMGhNXB1UtYSsxb9deH1nxpooskVF7Rgz"</span>
-<span class="p">}</span>
-</code></pre>
+<pre class="highlight php"><code></code></pre>
 
 <p>An AddressKeychain represents an associated collection of public and private keys alongside their respective public address. Generally returned and used with the <a href="#generate-address-endpoint">Generate Address Endpoint</a>.</p>
 
@@ -2303,43 +1867,7 @@ Only one of these three fields is required for the microtransaction endpoint: <b
 </code></pre>
 <pre class="highlight javascript"><code></code></pre>
 <pre class="highlight python"><code></code></pre>
-<pre class="highlight php"><code><span class="cp">&lt;?php</span>
-
-<span class="c1">// Run on console:
-// php -f .\sample\wallet-api\CreateWalletEndpoint.php
-</span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Wallet</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="c1">// Create a new instance of Wallet object
-</span><span class="nv">$wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Wallet</span><span class="p">();</span>
-<span class="nv">$wallet</span><span class="o">-&gt;</span><span class="na">setName</span><span class="p">(</span><span class="s1">'alice'</span><span class="p">);</span>
-<span class="nv">$wallet</span><span class="o">-&gt;</span><span class="na">setAddresses</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
-    <span class="s2">"1JcX75oraJEmzXXHpDjRctw3BX6qDmFM8e"</span>
-<span class="p">));</span>
-
-<span class="c1">// For Sample Purposes Only.
-</span><span class="nv">$request</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$wallet</span><span class="p">;</span>
-
-<span class="nv">$wallet</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
-
-<span class="p">{</span>
-  <span class="s2">"token"</span><span class="o">:</span><span class="s2">"c0afcccdde5081d6429de37d16166ead"</span><span class="p">,</span>
-  <span class="s2">"name"</span><span class="o">:</span><span class="s2">"alice"</span><span class="p">,</span>
-  <span class="s2">"addresses"</span><span class="o">:</span><span class="p">[</span>
-    <span class="s2">"1JcX75oraJEmzXXHpDjRctw3BX6qDmFM8e"</span>
-  <span class="p">]</span>
-<span class="p">}</span>
-</code></pre>
+<pre class="highlight php"><code></code></pre>
 
 <p>A Wallet represents a list of addresses, and can be used interchangeably with all the <a href="#address-api">Address API</a> endpoints.</p>
 
@@ -2380,35 +1908,7 @@ Only one of these three fields is required for the microtransaction endpoint: <b
 </code></pre>
 <pre class="highlight javascript"><code></code></pre>
 <pre class="highlight python"><code></code></pre>
-<pre class="highlight php"><code><span class="cp">&lt;?php</span>
-
-<span class="c1">// Run on console:
-// php -f .\sample\hook-api\WebHookIdEndpoint.php
-</span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\WebHook</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$webHook</span> <span class="o">=</span> <span class="nx">WebHook</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'d5ca3bd3-5dfb-477d-9fb4-ac3510af258d'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
-
-<span class="p">{</span>
-  <span class="s2">"id"</span><span class="o">:</span><span class="s2">"d5ca3bd3-5dfb-477d-9fb4-ac3510af258d"</span><span class="p">,</span>
-  <span class="s2">"token"</span><span class="o">:</span><span class="s2">"c0afcccdde5081d6429de37d16166ead"</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">:</span><span class="s2">"http://requestb.in/rwp6jirw?uniqid=5581998e19114"</span><span class="p">,</span>
-  <span class="s2">"callback_errors"</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"event"</span><span class="o">:</span><span class="s2">"unconfirmed-tx"</span><span class="p">,</span>
-  <span class="s2">"hash"</span><span class="o">:</span><span class="s2">"2b17f5589528f97436b5d563635b4b27ca8980aa20c300abdc538f2a8bfa871b"</span><span class="p">,</span>
-  <span class="s2">"filter"</span><span class="o">:</span><span class="s2">"event=unconfirmed-tx\u0026hash=2b17f5589528f97436b5d563635b4b27ca8980aa20c300abdc538f2a8bfa871b"</span>
-<span class="p">}</span>
-</code></pre>
+<pre class="highlight php"><code></code></pre>
 
 <p>An Event represents a WebHooks or WebSockets-based notification request, as detailed in the <a href="#events-and-hooks">Events &amp; Hooks</a> section of the documentation.</p>
 
@@ -2480,39 +1980,7 @@ Only one of these three fields is required for the microtransaction endpoint: <b
 </code></pre>
 <pre class="highlight javascript"><code></code></pre>
 <pre class="highlight python"><code></code></pre>
-<pre class="highlight php"><code><span class="cp">&lt;?php</span>
-<span class="c1">// Run on console:
-// php -f .\sample\payment-api\CreatePaymentEndpoint.php
-</span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\PaymentForward</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$paymentForward</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PaymentForward</span><span class="p">();</span>
-<span class="nv">$paymentForward</span><span class="o">-&gt;</span><span class="na">setDestination</span><span class="p">(</span><span class="s1">'15qx9ug952GWGTNn7Uiv6vode4RcGrRemh'</span><span class="p">);</span>
-<span class="nv">$paymentForward</span><span class="o">-&gt;</span><span class="na">setCallbackUrl</span><span class="p">(</span><span class="s2">"http://requestb.in/rwp6jirw?uniqid="</span> <span class="o">.</span> <span class="nb">uniqid</span><span class="p">());</span>
-
-<span class="c1">// For Sample Purposes Only.
-</span><span class="nv">$request</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$paymentForward</span><span class="p">;</span>
-
-<span class="nv">$paymentForward</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$apiContext</span><span class="p">);</span>
-
-<span class="p">{</span>
-  <span class="s2">"destination"</span><span class="o">:</span><span class="s2">"15qx9ug952GWGTNn7Uiv6vode4RcGrRemh"</span><span class="p">,</span>
-  <span class="s2">"callback_url"</span><span class="o">:</span><span class="s2">"http://requestb.in/rwp6jirw?uniqid=5583de7d87288"</span><span class="p">,</span>
-  <span class="s2">"id"</span><span class="o">:</span><span class="s2">"ec2b4b4f-eeb2-4824-b528-7d78a6f52492"</span><span class="p">,</span>
-  <span class="s2">"token"</span><span class="o">:</span><span class="s2">"c0afcccdde5081d6429de37d16166ead"</span><span class="p">,</span>
-  <span class="s2">"input_address"</span><span class="o">:</span><span class="s2">"17h2S1KtX7AqS9DJexqqSTNFCgwCoqqxhU"</span>
-<span class="p">}</span>
-</code></pre>
+<pre class="highlight php"><code></code></pre>
 
 <p>A PaymentForward object represents a request set up through the <a href="#payment-forwarding">Payment Forwarding</a> service.</p>
 
@@ -2591,14 +2059,7 @@ Only one of these three fields is required for the microtransaction endpoint: <b
 </code></pre>
 <pre class="highlight javascript"><code></code></pre>
 <pre class="highlight python"><code></code></pre>
-<pre class="highlight php"><code>{
-  "value": 100000000,
-  "input_address": "16uKw7GsQSzfMaVTcT7tpFQkd7Rh9qcXWX",
-  "destination": "15qx9ug952GWGTNn7Uiv6vode4RcGrRemh",
-  "input_transaction_hash": "39bed5d...",
-  "transaction_hash": "1aa6103..."
-}
-</code></pre>
+<pre class="highlight php"><code></code></pre>
 
 <p>A PaymentForwardCallback object represents the payload delivered to the optional <strong>callback_url</strong> in a <a href="#payment-forward">PaymentForward</a> request.</p>
 
@@ -2716,19 +2177,7 @@ Only one of these three fields is required for the microtransaction endpoint: <b
 <span class="c1">// Run on console:
 // php -f .\sample\chain-api\ChainEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Blockchain</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$chain</span> <span class="o">=</span> <span class="nx">Blockchain</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'BTC.main'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$chain</span> <span class="o">=</span> <span class="nx">Blockchain</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'BTC.main'</span><span class="p">);</span>
 
 <span class="p">{</span>
   <span class="s2">"name"</span><span class="o">:</span><span class="s2">"BTC.main"</span><span class="p">,</span>
@@ -2878,19 +2327,7 @@ Only one of these three fields is required for the microtransaction endpoint: <b
 <span class="c1">// Run on console:
 // php -f .\sample\block-api\BlockHashEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Block</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$block</span> <span class="o">=</span> <span class="nx">Block</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'0000000000000000189bba3564a63772107b5673c940c16f12662b3e8546b412'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$block</span> <span class="o">=</span> <span class="nx">Block</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'0000000000000000189bba3564a63772107b5673c940c16f12662b3e8546b412'</span><span class="p">);</span>
 
 <span class="p">{</span>
   <span class="s2">"hash"</span><span class="o">:</span><span class="s2">"0000000000000000c504bdea36e531d8089d324f2d936c86e3274f97f8a44328"</span><span class="p">,</span>
@@ -3055,24 +2492,12 @@ Only one of these three fields is required for the microtransaction endpoint: <b
 <span class="c1">// Run on console:
 // php -f .\sample\block-api\BlockHeightEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Block</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
 <span class="nv">$params</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
     <span class="s1">'txstart'</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
     <span class="s1">'limit'</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
 <span class="p">);</span>
 
-<span class="nv">$block</span> <span class="o">=</span> <span class="nx">Block</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'293000'</span><span class="p">,</span> <span class="nv">$params</span><span class="p">,</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$block</span> <span class="o">=</span> <span class="nx">Block</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'293000'</span><span class="p">,</span> <span class="nv">$params</span><span class="p">);</span>
 
 <span class="p">{</span>
   <span class="s2">"hash"</span><span class="o">:</span><span class="s2">"0000000000000000c504bdea36e531d8089d324f2d936c86e3274f97f8a44328"</span><span class="p">,</span>
@@ -3217,19 +2642,7 @@ With recent blocks, $BLOCK_HEIGHT is not always a unique identifier, due to the 
 <span class="c1">// Run on console:
 // php -f .\sample\address-api\AddressBalanceEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Address</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$addressBalance</span> <span class="o">=</span> <span class="nx">Address</span><span class="o">::</span><span class="na">getOnlyBalance</span><span class="p">(</span><span class="s1">'1DEP8i3QJCsomS4BSMY2RpU1upv62aGvhD'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$addressBalance</span> <span class="o">=</span> <span class="nx">Address</span><span class="o">::</span><span class="na">getOnlyBalance</span><span class="p">(</span><span class="s1">'1DEP8i3QJCsomS4BSMY2RpU1upv62aGvhD'</span><span class="p">);</span>
 
 <span class="p">{</span>
   <span class="s2">"address"</span><span class="o">:</span><span class="s2">"1DEP8i3QJCsomS4BSMY2RpU1upv62aGvhD"</span><span class="p">,</span>
@@ -3408,19 +2821,7 @@ With recent blocks, $BLOCK_HEIGHT is not always a unique identifier, due to the 
 <span class="c1">// Run on console:
 // php -f .\sample\address-api\AddressEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Address</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$address</span> <span class="o">=</span> <span class="nx">Address</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'1DEP8i3QJCsomS4BSMY2RpU1upv62aGvhD'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$address</span> <span class="o">=</span> <span class="nx">Address</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'1DEP8i3QJCsomS4BSMY2RpU1upv62aGvhD'</span><span class="p">);</span>
 
 <span class="p">{</span>
   <span class="s2">"address"</span><span class="o">:</span><span class="s2">"1DEP8i3QJCsomS4BSMY2RpU1upv62aGvhD"</span><span class="p">,</span>
@@ -3741,19 +3142,7 @@ With recent blocks, $BLOCK_HEIGHT is not always a unique identifier, due to the 
 <span class="c1">// Run on console:
 // php -f .\sample\address-api\AddressFullEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Address</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$fullAddress</span> <span class="o">=</span> <span class="nx">Address</span><span class="o">::</span><span class="na">getFullAddress</span><span class="p">(</span><span class="s1">'1DEP8i3QJCsomS4BSMY2RpU1upv62aGvhD'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$fullAddress</span> <span class="o">=</span> <span class="nx">Address</span><span class="o">::</span><span class="na">getFullAddress</span><span class="p">(</span><span class="s1">'1DEP8i3QJCsomS4BSMY2RpU1upv62aGvhD'</span><span class="p">);</span>
 
 <span class="p">{</span>
   <span class="s2">"address"</span><span class="o">:</span><span class="s2">"1DEP8i3QJCsomS4BSMY2RpU1upv62aGvhD"</span><span class="p">,</span>
@@ -3897,23 +3286,7 @@ If your returned <a href="#address">Address</a> object includes the <b>hasMore</
 <span class="c1">// Run on console:
 // php -f .\sample\address-api\GenerateAddressEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\AddressKeyChain</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
 <span class="nv">$addressKeyChain</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AddressKeyChain</span><span class="p">();</span>
-
-<span class="c1">// For Sample Purposes Only.
-</span><span class="nv">$request</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$addressKeyChain</span><span class="p">;</span>
-
 <span class="nv">$addressKeyChain</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$apiContexts</span><span class="p">[</span><span class="s1">'BTC.main'</span><span class="p">]);</span>
 
 <span class="p">{</span>
@@ -4019,18 +3392,6 @@ Always use HTTPS for Address Generation requests. Otherwise, your generated priv
 <span class="c1">// Run on console:
 // php -f .\sample\address-api\GenerateMultisignAddressEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\AddressKeyChain</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
 <span class="nv">$addressKeyChain</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AddressKeyChain</span><span class="p">();</span>
 <span class="nv">$pubkeys</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
     <span class="s2">"02c716d071a76cbf0d29c29cacfec76e0ef8116b37389fb7a3e76d6d32cf59f4d3"</span><span class="p">,</span>
@@ -4043,7 +3404,7 @@ Always use HTTPS for Address Generation requests. Otherwise, your generated priv
 <span class="c1">// For Sample Purposes Only.
 </span><span class="nv">$request</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$addressKeyChain</span><span class="p">;</span>
 
-<span class="nv">$addressKeyChain</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$addressKeyChain</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 
 <span class="p">{</span>
   <span class="s2">"pubkeys"</span><span class="o">:</span><span class="p">[</span>
@@ -4136,29 +3497,13 @@ You are required to authenticate with your <a href="#rate-limits-and-tokens">use
 <span class="c1">// Run on console:
 // php -f .\sample\wallet-api\CreateWalletEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Wallet</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
 <span class="c1">// Create a new instance of Wallet object
 </span><span class="nv">$wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Wallet</span><span class="p">();</span>
 <span class="nv">$wallet</span><span class="o">-&gt;</span><span class="na">setName</span><span class="p">(</span><span class="s1">'alice'</span><span class="p">);</span>
 <span class="nv">$wallet</span><span class="o">-&gt;</span><span class="na">setAddresses</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
     <span class="s2">"1JcX75oraJEmzXXHpDjRctw3BX6qDmFM8e"</span>
 <span class="p">));</span>
-
-<span class="c1">// For Sample Purposes Only.
-</span><span class="nv">$request</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$wallet</span><span class="p">;</span>
-
-<span class="nv">$wallet</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$wallet</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 
 <span class="p">{</span>
   <span class="s2">"token"</span><span class="o">:</span><span class="s2">"c0afcccdde5081d6429de37d16166ead"</span><span class="p">,</span>
@@ -4271,28 +3616,14 @@ If the named wallet already exists under your token, attempting to create a new 
  <span class="s">'addresses'</span><span class="p">:</span> <span class="p">[</span><span class="s">'1JcX75oraJEmzXXHpDjRctw3BX6qDmFM8e'</span><span class="p">,</span> <span class="s">'13cj1QtfW61kQHoqXm3khVRYPJrgQiRM6j'</span><span class="p">]}</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-
 <span class="c1">// Run on console:
 // php -f .\sample\wallet-api\AddAddressesToWalletEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\AddressList</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Wallet</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$wallet</span> <span class="o">=</span> <span class="nx">Wallet</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'alice'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$wallet</span> <span class="o">=</span> <span class="nx">Wallet</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'alice'</span><span class="p">);</span>
 <span class="nv">$addressesList</span> <span class="o">=</span> <span class="nx">AddressList</span><span class="o">::</span><span class="na">fromAddressesArray</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
     <span class="s2">"13cj1QtfW61kQHoqXm3khVRYPJrgQiRM6j"</span>
 <span class="p">));</span>
-<span class="nv">$wallet</span><span class="o">-&gt;</span><span class="na">addAddresses</span><span class="p">(</span><span class="nv">$addressesList</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$wallet</span><span class="o">-&gt;</span><span class="na">addAddresses</span><span class="p">(</span><span class="nv">$addressesList</span><span class="p">);</span>
 
 <span class="p">{</span>
   <span class="s2">"token"</span><span class="o">:</span><span class="s2">"c0afcccdde5081d6429de37d16166ead"</span><span class="p">,</span>
@@ -4355,19 +3686,7 @@ If the named wallet already exists under your token, attempting to create a new 
 <span class="c1">// Run on console:
 // php -f .\sample\wallet-api\WalletAddressesEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Wallet</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$wallet</span> <span class="o">=</span> <span class="nx">Wallet</span><span class="o">::</span><span class="na">getOnlyAddresses</span><span class="p">(</span><span class="s1">'alice'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$wallet</span> <span class="o">=</span> <span class="nx">Wallet</span><span class="o">::</span><span class="na">getOnlyAddresses</span><span class="p">(</span><span class="s1">'alice'</span><span class="p">);</span>
 
 <span class="p">{</span>
   <span class="s2">"token"</span><span class="o">:</span><span class="s2">"c0afcccdde5081d6429de37d16166ead"</span><span class="p">,</span>
@@ -4416,30 +3735,16 @@ If the named wallet already exists under your token, attempting to create a new 
 <span class="o">&gt;&gt;&gt;</span> <span class="k">assert</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">204</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
-
 <span class="c1">// Run on console:
 // php -f .\sample\wallet-api\RemoveAddressesFromWalletEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\AddressesList</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Wallet</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
 <span class="c1">// List of addresses to be removed from the wallet
 </span><span class="nv">$addressesList</span> <span class="o">=</span> <span class="nx">AddressesList</span><span class="o">::</span><span class="na">fromAddressesArray</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
     <span class="s2">"13cj1QtfW61kQHoqXm3khVRYPJrgQiRM6j"</span>
 <span class="p">));</span>
 
-<span class="nv">$wallet</span> <span class="o">=</span> <span class="nx">Wallet</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'alice'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
-<span class="nv">$wallet</span><span class="o">-&gt;</span><span class="na">removeAddresses</span><span class="p">(</span><span class="nv">$addressesList</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$wallet</span> <span class="o">=</span> <span class="nx">Wallet</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'alice'</span><span class="p">);</span>
+<span class="nv">$wallet</span><span class="o">-&gt;</span><span class="na">removeAddresses</span><span class="p">(</span><span class="nv">$addressesList</span><span class="p">);</span>
 
 <span class="p">{</span>
   <span class="s2">"token"</span><span class="o">:</span><span class="s2">"c0afcccdde5081d6429de37d16166ead"</span><span class="p">,</span>
@@ -4514,20 +3819,8 @@ If the named wallet already exists under your token, attempting to create a new 
 <span class="c1">// Run on console:
 // php -f .\sample\wallet-api\GenerateAddressInWalletEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Wallet</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$wallet</span> <span class="o">=</span> <span class="nx">Wallet</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'alice'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
-<span class="nv">$walletGenerateAddressResponse</span> <span class="o">=</span> <span class="nv">$wallet</span><span class="o">-&gt;</span><span class="na">generateAddress</span><span class="p">(</span><span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$wallet</span> <span class="o">=</span> <span class="nx">Wallet</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'alice'</span><span class="p">);</span>
+<span class="nv">$walletGenerateAddressResponse</span> <span class="o">=</span> <span class="nv">$wallet</span><span class="o">-&gt;</span><span class="na">generateAddress</span><span class="p">();</span>
 
 <span class="p">{</span>
   <span class="s2">"token"</span><span class="o">:</span><span class="s2">"c0afcccdde5081d6429de37d16166ead"</span><span class="p">,</span>
@@ -4589,20 +3882,8 @@ If the named wallet already exists under your token, attempting to create a new 
 <span class="c1">// Run on console:
 // php -f .\sample\wallet-api\DeleteWalletEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Wallet</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$wallet</span> <span class="o">=</span> <span class="nx">Wallet</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'alice'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
-<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$wallet</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$wallet</span> <span class="o">=</span> <span class="nx">Wallet</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'alice'</span><span class="p">);</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$wallet</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
 </code></pre>
 
 <table><thead>
@@ -4827,19 +4108,7 @@ Even if you don&rsquo;t use the API to assist in creating transactions, we highl
 <span class="c1">// Run on console:
 // php -f .\sample\transaction-api\TransactionHashEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\TX</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$transaction</span> <span class="o">=</span> <span class="nx">TX</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'f854aebae95150b379cc1187d848d58225f3c4157fe992bcd166f58bd5063449'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$transaction</span> <span class="o">=</span> <span class="nx">TX</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'f854aebae95150b379cc1187d848d58225f3c4157fe992bcd166f58bd5063449'</span><span class="p">);</span>
 
 <span class="p">{</span>
 <span class="s2">"block_hash"</span><span class="o">:</span> <span class="s2">"0000000000000000c504bdea36e531d80..."</span><span class="p">,</span>
@@ -5057,19 +4326,7 @@ Even if you don&rsquo;t use the API to assist in creating transactions, we highl
 <span class="c1">// Run on console:
 // php -f .\sample\transaction-api\UnconfirmedTransactionsEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\TX</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$txs</span> <span class="o">=</span> <span class="nx">TX</span><span class="o">::</span><span class="na">getUnconfirmed</span><span class="p">(</span><span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$txs</span> <span class="o">=</span> <span class="nx">TX</span><span class="o">::</span><span class="na">getUnconfirmed</span><span class="p">();</span>
 
 <span class="p">[{</span><span class="s1">'received'</span><span class="o">:</span> <span class="s1">'2015-06-10T23:10:31.534Z'</span><span class="p">,</span>
   <span class="s1">'ver'</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -5340,18 +4597,6 @@ Always use HTTPS for creating and pushing transactions.
 <span class="c1">// Run on console:
 // php -f .\sample\transaction-api\NewTransactionEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\Transaction</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'test'</span><span class="p">,</span> <span class="s1">'bcy'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
 <span class="c1">// Create a new instance of Transaction object
 </span><span class="nv">$tx</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Transaction</span><span class="p">();</span>
 
@@ -5366,11 +4611,7 @@ Always use HTTPS for creating and pushing transactions.
 <span class="c1">// Tx amount
 </span><span class="nv">$output</span><span class="o">-&gt;</span><span class="na">setValue</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span> <span class="c1">// Satoshis
 </span>
-<span class="c1">// For Sample Purposes Only.
-</span><span class="nv">$request</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$tx</span><span class="p">;</span>
-
-<span class="c1">// ### Create New Transaction
-</span><span class="nv">$output</span> <span class="o">=</span> <span class="nv">$tx</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$txSkeleton</span> <span class="o">=</span> <span class="nv">$tx</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 
 <span class="p">{</span>
   <span class="s2">"tx"</span><span class="o">:</span><span class="p">{</span>
@@ -5955,7 +5196,7 @@ One of the most common errors we see are users who use uncompressed public keys 
 </span>
 <span class="nv">$hexRawTx</span> <span class="o">=</span> <span class="s2">"01000000011935b41d12936df99d322ac8972b74ecff7b79408bbccaf1b2eb8015228beac8000000006b483045022100921fc36b911094280f07d8504a80fbab9b823a25f102e2bc69b14bcd369dfc7902200d07067d47f040e724b556e5bc3061af132d5a47bd96e901429d53c41e0f8cca012102152e2bb5b273561ece7bbe8b1df51a4c44f5ab0bc940c105045e2cc77e618044ffffffff0240420f00000000001976a9145fb1af31edd2aa5a2bbaa24f6043d6ec31f7e63288ac20da3c00000000001976a914efec6de6c253e657a9d5506a78ee48d89762fb3188ac00000000"</span><span class="p">;</span>
 
-<span class="nv">$tx</span> <span class="o">=</span> <span class="nx">TX</span><span class="o">::</span><span class="na">push</span><span class="p">(</span><span class="nv">$hexRawTx</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$tx</span> <span class="o">=</span> <span class="nx">TX</span><span class="o">::</span><span class="na">push</span><span class="p">(</span><span class="nv">$hexRawTx</span><span class="p">);</span>
 
 <span class="p">{</span>
   <span class="s2">"block_height"</span><span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
@@ -6230,7 +5471,7 @@ One of the most common errors we see are users who use uncompressed public keys 
 </span>
 <span class="nv">$hexRawTx</span> <span class="o">=</span> <span class="s2">"01000000011935b41d12936df99d322ac8972b74ecff7b79408bbccaf1b2eb8015228beac8000000006b483045022100921fc36b911094280f07d8504a80fbab9b823a25f102e2bc69b14bcd369dfc7902200d07067d47f040e724b556e5bc3061af132d5a47bd96e901429d53c41e0f8cca012102152e2bb5b273561ece7bbe8b1df51a4c44f5ab0bc940c105045e2cc77e618044ffffffff0240420f00000000001976a9145fb1af31edd2aa5a2bbaa24f6043d6ec31f7e63288ac20da3c00000000001976a914efec6de6c253e657a9d5506a78ee48d89762fb3188ac00000000"</span><span class="p">;</span>
 
-<span class="nv">$tx</span> <span class="o">=</span> <span class="nx">TX</span><span class="o">::</span><span class="na">decode</span><span class="p">(</span><span class="nv">$hexRawTx</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$tx</span> <span class="o">=</span> <span class="nx">TX</span><span class="o">::</span><span class="na">decode</span><span class="p">(</span><span class="nv">$hexRawTx</span><span class="p">);</span>
 
 <span class="p">{</span>
   <span class="s2">"block_height"</span><span class="o">:-</span><span class="mi">1</span><span class="p">,</span>
@@ -6361,7 +5602,7 @@ One of the most common errors we see are users who use uncompressed public keys 
     <span class="o">-&gt;</span><span class="na">addTXOutput</span><span class="p">(</span><span class="nv">$output</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
 
-<span class="nv">$txSkeleton</span> <span class="o">=</span> <span class="nv">$tx</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$txSkeleton</span> <span class="o">=</span> <span class="nv">$tx</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 </code></pre>
 
 <p>Multisignature transactions are made simple by the method described in the <a href="#creating-transactions">Creating Transactions</a> section, but they deserve special mention. In order to use them, you first need to fund a multisignature address. You use the <code class="prettyprint">/txs/new</code> endpoint as before, but instead of the <strong>outputs</strong> <strong>addresses</strong> array containing public addresses, it instead contains the public keys associated with the new address. In addition, you must select a <strong>script_type</strong> of <em>mutlisig-n-of-m</em>, where <em>n</em> and <em>m</em> are numbers (e.g., <em>multisig-2-of-3</em>). The code example demonstrates how the partially filled <a href="#tx">TX request object</a> would appear.</p>
@@ -6431,7 +5672,7 @@ If you only need a <i>pay-to-script-hash</i> address corresponding to N-of-M mul
     <span class="o">-&gt;</span><span class="na">addTXOutput</span><span class="p">(</span><span class="nv">$output</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="na">build</span><span class="p">();</span>
 
-<span class="nv">$txSkeleton</span> <span class="o">=</span> <span class="nv">$tx</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$txSkeleton</span> <span class="o">=</span> <span class="nv">$tx</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 </code></pre>
 
 <p>Once funded, you might want to programmatically spend the money in the address at some point. Here the process is similar, but with the inputs and outputs reversed. As you can see in the code sample, you need to provide the public keys within the <strong>inputs</strong> <strong>addresses</strong> array, and the corresponding <strong>script_type</strong> of <em>multisig-n-of-m</em> (e.g., <em>multisig-2-of-3</em>). Then you follow the same process of sending to <code class="prettyprint">/txs/new</code> and getting an array of data to be signed.</p>
@@ -6463,26 +5704,11 @@ curl -d <span class="s1">'{"data":"I am the walrus", "encoding":"string"}'</span
 <span class="c1">// Run on console:
 // php -f .\sample\transaction-api\DataEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\NullData</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
 <span class="nv">$nullData</span> <span class="o">=</span>  <span class="k">new</span> <span class="nx">NullData</span><span class="p">();</span>
 <span class="nv">$nullData</span><span class="o">-&gt;</span><span class="na">setEncoding</span><span class="p">(</span><span class="s1">'string'</span><span class="p">);</span>
 <span class="nv">$nullData</span><span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="s1">'***BlockCypher Data Endpoint Test***'</span><span class="p">);</span> <span class="c1">// max 40 bytes
 </span>
-<span class="c1">// For Sample Purposes Only.
-</span><span class="nv">$request</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$nullData</span><span class="p">;</span>
-
-<span class="nv">$nullData</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$nullData</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 
 <span class="p">{</span>
   <span class="s2">"data"</span><span class="o">:</span> <span class="s2">"***BlockCypher Data Endpoint Test***"</span><span class="p">,</span>
@@ -6609,14 +5835,14 @@ As with creating <a href="#creating-transactions">normal Transactions</a>, alway
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="c1">// Run on console:
-// php -f .\sample\microtransaction-api\MicroTransactionViaPrivateKeyEndpoint.php
+// php -f .\sample\microtransaction-api\CreateMicroTXFromPrivateDocsSample.php
 </span>
-<span class="nv">$microTX</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MicroTX</span><span class="p">();</span>
-<span class="nv">$microTX</span><span class="o">-&gt;</span><span class="na">setFromPrivate</span><span class="p">(</span><span class="s2">"2c2cc015519b79782bd9c5af66f442e808f573714e3c4dc6df7d79c183963cff"</span><span class="p">);</span>
-<span class="nv">$microTX</span><span class="o">-&gt;</span><span class="na">setToAddress</span><span class="p">(</span><span class="s2">"C4MYFr4EAdqEeUKxTnPUF3d3whWcPMz1Fi"</span><span class="p">);</span>
-<span class="nv">$microTX</span><span class="o">-&gt;</span><span class="na">setValueSatoshis</span><span class="p">(</span><span class="mi">10000</span><span class="p">);</span>
-
-<span class="nv">$microTX</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$microTX</span> <span class="o">=</span> <span class="nx">MicroTX</span><span class="o">::</span><span class="na">fromPrivate</span><span class="p">(</span>
+    <span class="s2">"2c2cc015519b79782bd9c5af66f442e808f573714e3c4dc6df7d79c183963cff"</span><span class="p">,</span> <span class="c1">// private key
+</span>    <span class="s2">"C4MYFr4EAdqEeUKxTnPUF3d3whWcPMz1Fi"</span><span class="p">,</span> <span class="c1">// to address
+</span>    <span class="mi">10000</span><span class="p">,</span> <span class="c1">// value (satoshis)
+</span>    <span class="nv">$apiContext</span>
+<span class="p">);</span>
 
 <span class="p">{</span>
   <span class="s2">"from_private"</span><span class="o">:</span><span class="s2">"2c2cc015519b79782bd9c5af66f442e808f573714e3c4dc6df7d79c183963cff"</span><span class="p">,</span>
@@ -6736,15 +5962,14 @@ curl -H <span class="s2">"Content-Type: application/json"</span> -d <span class=
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="c1">// Run on console:
-// php -f .\sample\microtransaction-api\CreateSignAndSendMicrotransactionEndpoint.php
+// php -f .\sample\microtransaction-api\CreateMicroTXFromPubkeyDocsSample.php
 </span>
-<span class="nv">$microTX</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MicroTX</span><span class="p">();</span>
-<span class="nv">$microTX</span><span class="o">-&gt;</span><span class="na">setFromPubkey</span><span class="p">(</span><span class="s2">"02d4e3404e175923adf89c932fab96758716f6a0a896890f2494c5d9141eb3f543"</span><span class="p">)</span>
-    <span class="o">-&gt;</span><span class="na">setToAddress</span><span class="p">(</span><span class="s2">"C4MYFr4EAdqEeUKxTnPUF3d3whWcPMz1Fi"</span><span class="p">)</span>
-    <span class="o">-&gt;</span><span class="na">setValueSatoshis</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
-    <span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$apiContext</span><span class="p">)</span>
-    <span class="o">-&gt;</span><span class="na">sign</span><span class="p">(</span><span class="s2">"2c2cc015519b79782bd9c5af66f442e808f573714e3c4dc6df7d79c183963cff"</span><span class="p">)</span>
-    <span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$microTX</span> <span class="o">=</span> <span class="nx">\BlockCypher\Api\MicroTX</span><span class="o">::</span><span class="na">fromPubkey</span><span class="p">(</span>
+    <span class="s2">"2c2cc015519b79782bd9c5af66f442e808f573714e3c4dc6df7d79c183963cff"</span><span class="p">,</span> <span class="c1">// private key
+</span>    <span class="s2">"C4MYFr4EAdqEeUKxTnPUF3d3whWcPMz1Fi"</span><span class="p">,</span> <span class="c1">// to address
+</span>    <span class="mi">10000</span><span class="p">,</span> <span class="c1">// value (satoshis)
+</span>    <span class="nv">$apiContext</span>
+<span class="p">);</span>
 
 <span class="p">{</span>
   <span class="s2">"from_pubkey"</span><span class="o">:</span><span class="s2">"02d4e3404e175923adf89c932fab96758716f6a0a896890f2494c5d9141eb3f543"</span><span class="p">,</span>
@@ -6848,19 +6073,7 @@ While we stand by our work behind our confidence research, please note that thes
 <span class="c1">// Run on console:
 // php -f .\sample\confidence-factor\TransactionConfidenceEndpoint.php
 </span>
-<span class="k">require</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/../bootstrap.php'</span><span class="p">;</span>
-
-<span class="k">use</span> <span class="nx">BlockCypher\Api\TXConfidence</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Auth\SimpleTokenCredential</span><span class="p">;</span>
-<span class="k">use</span> <span class="nx">BlockCypher\Rest\ApiContext</span><span class="p">;</span>
-
-<span class="nv">$apiContext</span> <span class="o">=</span> <span class="nx">ApiContext</span><span class="o">::</span><span class="na">create</span><span class="p">(</span>
-    <span class="s1">'main'</span><span class="p">,</span> <span class="s1">'btc'</span><span class="p">,</span> <span class="s1">'v1'</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">SimpleTokenCredential</span><span class="p">(</span><span class="s1">'c0afcccdde5081d6429de37d16166ead'</span><span class="p">),</span>
-    <span class="k">array</span><span class="p">(</span><span class="s1">'log.LogEnabled'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'log.FileName'</span> <span class="o">=&gt;</span> <span class="s1">'BlockCypher.log'</span><span class="p">,</span> <span class="s1">'log.LogLevel'</span> <span class="o">=&gt;</span> <span class="s1">'DEBUG'</span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nv">$txConfidence</span> <span class="o">=</span> <span class="nx">TXConfidence</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'43fa951e1bea87c282f6725cf8bdc08bb48761396c3af8dd5a41a085ab62acc9'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$txConfidence</span> <span class="o">=</span> <span class="nx">TXConfidence</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'43fa951e1bea87c282f6725cf8bdc08bb48761396c3af8dd5a41a085ab62acc9'</span><span class="p">);</span>
 
 <span class="p">{</span>
   <span class="s2">"age_millis"</span><span class="o">:</span><span class="mi">2188284017</span><span class="p">,</span>
@@ -6964,7 +6177,7 @@ By default, all payments will be debited with a 10,000 satoshis mining fee. The 
 <span class="nv">$paymentForward</span><span class="o">-&gt;</span><span class="na">setDestination</span><span class="p">(</span><span class="s1">'15qx9ug952GWGTNn7Uiv6vode4RcGrRemh'</span><span class="p">);</span>
 <span class="nv">$paymentForward</span><span class="o">-&gt;</span><span class="na">setCallbackUrl</span><span class="p">(</span><span class="s2">"http://requestb.in/rwp6jirw?uniqid="</span> <span class="o">.</span> <span class="nb">uniqid</span><span class="p">());</span>
 
-<span class="nv">$paymentForward</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$paymentForward</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 
 <span class="p">{</span>
   <span class="s2">"destination"</span><span class="o">:</span><span class="s2">"15qx9ug952GWGTNn7Uiv6vode4RcGrRemh"</span><span class="p">,</span>
@@ -7045,7 +6258,7 @@ If you decide to have a <b>callback_url</b>, you&rsquo;ll receive a payload at t
 <span class="c1">// Run on console:
 // php -f .\sample\payment-api\ListPaymentsEndpoint.php
 </span>
-<span class="nv">$paymentForwardArray</span> <span class="o">=</span> <span class="nx">PaymentForward</span><span class="o">::</span><span class="na">getAll</span><span class="p">(</span><span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$paymentForwardArray</span> <span class="o">=</span> <span class="nx">PaymentForward</span><span class="o">::</span><span class="na">getAll</span><span class="p">();</span>
 
 <span class="p">[</span>
   <span class="p">{</span>
@@ -7103,7 +6316,7 @@ HTTP/1.1 204 No Content
 </span>
 <span class="nv">$webHook</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PaymentForward</span><span class="p">();</span>
 <span class="nv">$webHook</span><span class="o">-&gt;</span><span class="na">setId</span><span class="p">(</span><span class="s1">'ec2b4b4f-eeb2-4824-b528-7d78a6f52492'</span><span class="p">);</span>
-<span class="nv">$webHook</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$webHook</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
 
 <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">204</span> <span class="nx">No</span> <span class="nx">Content</span>
 </code></pre>
@@ -7291,10 +6504,7 @@ Testing WebHooks can be tricky; we recommend using <a href="http://requestb.in/"
 <span class="nv">$webHook</span><span class="o">-&gt;</span><span class="na">setEvent</span><span class="p">(</span><span class="s1">'unconfirmed-tx'</span><span class="p">);</span>
 <span class="nv">$webHook</span><span class="o">-&gt;</span><span class="na">setHash</span><span class="p">(</span><span class="s1">'2b17f5589528f97436b5d563635b4b27ca8980aa20c300abdc538f2a8bfa871b'</span><span class="p">);</span>
 
-<span class="c1">// For Sample Purposes Only.
-</span><span class="nv">$request</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$webHook</span><span class="p">;</span>
-
-<span class="nv">$output</span> <span class="o">=</span> <span class="nv">$webHook</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$output</span> <span class="o">=</span> <span class="nv">$webHook</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 
 <span class="p">{</span>
   <span class="s2">"url"</span><span class="o">:</span><span class="s2">"http://requestb.in/rwp6jirw?uniqid=5581998e19114"</span><span class="p">,</span>
@@ -7377,7 +6587,7 @@ Testing WebHooks can be tricky; we recommend using <a href="http://requestb.in/"
 <span class="c1">// Run on console:
 // php -f .\sample\hook-api\ListWebHooksEndpoint.php
 </span>
-<span class="nv">$webHooks</span> <span class="o">=</span> <span class="nx">WebHook</span><span class="o">::</span><span class="na">getAll</span><span class="p">(</span><span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$webHooks</span> <span class="o">=</span> <span class="nx">WebHook</span><span class="o">::</span><span class="na">getAll</span><span class="p">();</span>
 
 <span class="p">[</span>
   <span class="p">{</span>
@@ -7453,7 +6663,7 @@ Testing WebHooks can be tricky; we recommend using <a href="http://requestb.in/"
 <span class="c1">// Run on console:
 // php -f .\sample\hook-api\WebHookIdEndpoint.php
 </span>
-<span class="nv">$webHook</span> <span class="o">=</span> <span class="nx">WebHook</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'d5ca3bd3-5dfb-477d-9fb4-ac3510af258d'</span><span class="p">,</span> <span class="k">array</span><span class="p">(),</span> <span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$webHook</span> <span class="o">=</span> <span class="nx">WebHook</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">'d5ca3bd3-5dfb-477d-9fb4-ac3510af258d'</span><span class="p">);</span>
 
 <span class="p">{</span>
   <span class="s2">"id"</span><span class="o">:</span><span class="s2">"d5ca3bd3-5dfb-477d-9fb4-ac3510af258d"</span><span class="p">,</span>
@@ -7510,13 +6720,13 @@ HTTP/1.1 204 OK
 // php -f .\sample\hook-api\DeleteWebHookEndpoint.php
 </span>
 <span class="c1">// Option 1: get the object before removing it
-//$webHook = WebHook::get('d5ca3bd3-5dfb-477d-9fb4-ac3510af258d', array(), $apiContext);
+//$webHook = WebHook::get('d5ca3bd3-5dfb-477d-9fb4-ac3510af258d');
 </span>
 <span class="c1">// Option 2: create a new empty object only with its ID. You save one API request
 </span><span class="nv">$webHook</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebHook</span><span class="p">();</span>
 <span class="nv">$webHook</span><span class="o">-&gt;</span><span class="na">setId</span><span class="p">(</span><span class="s1">'d5ca3bd3-5dfb-477d-9fb4-ac3510af258d'</span><span class="p">);</span>
 
-<span class="nv">$webHook</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="nv">$apiContext</span><span class="p">);</span>
+<span class="nv">$webHook</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
 
 <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">204</span> <span class="nx">OK</span>
 </code></pre>
